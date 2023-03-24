@@ -1,3 +1,4 @@
+import ApiDashboard from '@/components/ApiDashboard';
 import RequestApiKey from '@/components/RequestApiKey';
 import { authOptions } from '@/lib/auth';
 import { Metadata } from 'next';

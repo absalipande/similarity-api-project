@@ -7,6 +7,6 @@ export interface CreateApiData {
 }
 
 export interface RevokeApiData {
-  erorr: string | ZodIssue[] | null;
+  error: string | ZodIssue[] | null;
   success: boolean;
 }

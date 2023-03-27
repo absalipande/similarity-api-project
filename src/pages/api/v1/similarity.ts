@@ -1,5 +1,6 @@
 import { withMethods } from '@/lib/api-middlewares/with-methods';
 import { db } from '@/lib/db';
+import { openai } from '@/lib/openai';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 
@@ -29,6 +30,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!validApiKey) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
+
+    const start = new Date();
+    const embeddings = await Promise.all(
+      [text1, text2].map(async (text) => {
+        const res = await openai.createEmbedding({
+          model: 'text-embedding-ada-002',
+          input: text,
+        });
+
+        return res.data.data[0].embedding;
+      })
+    );
   } catch (error) {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: error.issues });

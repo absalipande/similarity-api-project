@@ -1,3 +1,7 @@
+This is a project created using Next.js and Typescript. I followed this project step-by-step from a Youtube tutorial by Josh tried coding (https://www.youtube.com/watch?v=4lUkSgvmTYM&t=14146s)
+
+I followed this project because I want to fully understand how both Typescript and Nextjs are applied in real-life application
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

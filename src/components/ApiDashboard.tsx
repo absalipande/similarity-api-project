@@ -1,15 +1,15 @@
 import { authOptions } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { formatDistance } from 'date-fns';
 import { getServerSession } from 'next-auth';
 import { notFound } from 'next/navigation';
-import { formatDistance } from 'date-fns';
-import { Input } from './ui/Input';
 import ApiKeyOptions from './ApiKeyOptions';
+import { Input } from './ui/Input';
 import LargeHeading from './ui/LargeHeading';
 import Paragraph from './ui/Paragraph';
 import Table from './ui/Table';
 
-const ApiDashboard = async () => {
+const ApiDashboard = async ({}) => {
   const user = await getServerSession(authOptions);
   if (!user) return notFound();
 
@@ -40,7 +40,7 @@ const ApiDashboard = async () => {
       <div className='flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center'>
         <Paragraph>Your API key:</Paragraph>
         <Input className='w-fit truncate' readOnly value={activeApiKey.key} />
-        <ApiKeyOptions apiGeneratedKey={activeApiKey.key} />
+        <ApiKeyOptions apiKeyKey={activeApiKey.key} />
       </div>
 
       <Paragraph className='text-center md:text-left mt-4 -mb-4'>

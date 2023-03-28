@@ -3,31 +3,31 @@
 import { createApiKey } from '@/helpers/create-api-key';
 import { Key } from 'lucide-react';
 import { FC, useState } from 'react';
+import CopyButton from './CopyButton';
 import { Button } from './ui/Button';
-import { toast } from './ui/toast';
 import { Input } from './ui/Input';
 import LargeHeading from './ui/LargeHeading';
 import Paragraph from './ui/Paragraph';
-import CopyButton from './CopyButton';
+import { toast } from './ui/toast';
 
 interface RequestApiKeyProps {}
 
 const RequestApiKey: FC<RequestApiKeyProps> = ({}) => {
   const [isCreating, setIsCreating] = useState<boolean>(false);
-  const [apiKey, SetApiKey] = useState<string | null>(null);
+  const [apiKey, setApiKey] = useState<string | null>(null);
 
-  const createNewApiKey = async (e: React.FormEvent<HTMLFormElement>) => {
+  async function createNewApiKey(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsCreating(true);
 
     try {
       const generatedApiKey = await createApiKey();
-      SetApiKey(generatedApiKey);
-    } catch (error) {
-      if (error instanceof Error) {
+      setApiKey(generatedApiKey);
+    } catch (err) {
+      if (err instanceof Error) {
         toast({
           title: 'Error',
-          message: error.message,
+          message: err.message,
           type: 'error',
         });
 
@@ -42,7 +42,7 @@ const RequestApiKey: FC<RequestApiKeyProps> = ({}) => {
     } finally {
       setIsCreating(false);
     }
-  };
+  }
 
   return (
     <div className='container md:max-w-2xl'>

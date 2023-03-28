@@ -49,7 +49,7 @@ const handler = async (
 
     return res
       .status(500)
-      .json({ error: 'Internal Srver Error', createdApiKey: null });
+      .json({ error: 'Internal Server Error', createdApiKey: null });
   }
 };
 

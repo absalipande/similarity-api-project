@@ -24,7 +24,7 @@ export default withAuth(
       try {
         const { success } = await ratelimit.limit(ip);
 
-        if (!success) return NextResponse.json({ error: 'Too many requests' });
+        if (!success) return NextResponse.json({ error: 'Too Many Requests' });
         return NextResponse.next();
       } catch (error) {
         return NextResponse.json({ error: 'Internal Server Error' });
@@ -34,7 +34,7 @@ export default withAuth(
     // Manage route protection
     const token = await getToken({ req });
     const isAuth = !!token;
-    const isAuthPage = pathname.startsWith('/login');
+    const isAuthPage = req.nextUrl.pathname.startsWith('/login');
 
     const sensitiveRoutes = ['/dashboard'];
 
